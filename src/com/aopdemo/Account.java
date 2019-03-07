@@ -5,6 +5,17 @@ public class Account {
 	private String name;
 	private String level;
 	
+	//ADD DEFAULT CONSTRUCTOR
+	public Account() {
+		
+	}
+	
+	//FIELDS CONSTRUCTOR
+	public Account(String name, String level) {
+		this.name = name;
+		this.level = level;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -17,6 +28,13 @@ public class Account {
 	public void setLevel(String level) {
 		this.level = level;
 	}
+	
+	//ADD TOSTRING
+	@Override
+	public String toString() {
+		return "Account [name=" + name + ", level=" + level + "]";
+	}
+	
 	
 	
 	

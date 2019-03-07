@@ -1,5 +1,8 @@
 package com.aopdemo.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.aopdemo.Account;
@@ -10,6 +13,25 @@ public class AccountDAO {
 	private String name;
 	private String serviceCode;
 	
+	//ADD NEW METHOD
+	public List<Account> findAccounts(){
+		
+		List<Account> myAccount = new ArrayList<>();
+		
+		//CREATE SOME ACCOUNTS
+		Account tempAccOne = new Account("Lucy", "Gold");
+		Account tempAccTwo = new Account("Juan", "Silver");
+		Account tempAccThree = new Account("Cesar", "Gold");
+		
+		//ADD ACCOUNTS TO LIST#
+		myAccount.add(tempAccOne);
+		myAccount.add(tempAccTwo);
+		myAccount.add(tempAccThree);
+		
+		return myAccount;
+		
+	}
+		
 	public void addAccount(Account theAccount, boolean vipFlag) {
 		
 		System.out.println(getClass()+": DOING MY DB WORK, ACCOUNT");
