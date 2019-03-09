@@ -31,9 +31,37 @@ public class MyDemoLogginAspect {
 		//PRINT RESULT
 		System.out.println("\n===> result is: "+result);
 		
+		//POST-PROCESS THE DATA / MODIFY
+		
+		
+		//CONVERT THE ACCOUNT NAMES TO UPPER CASE
+		convertAccountNamesToUpperCase(result);
+		
+		//PRINT RESULT
+		System.out.println("\n===> result is: "+result);
+		
 	}
 	
 	
+	private void convertAccountNamesToUpperCase(List<Account> result) {
+		
+		//LOOP ACCOUNTS 
+		for (Account tempAccount : result) {
+			
+			//GET UPPERCASE VERSION OF NAME
+			String theUpperName = tempAccount.getName().toUpperCase();
+			
+			//UPDATE NAME ON ACCOUNT
+			tempAccount.setName(theUpperName);
+		}
+		
+		//GET UPPERCASE VERSION OF NAME
+		
+		//UPDATE THE NAME ON ACCOUNT
+		
+	}
+
+
 	//@BEFORE
 	@Before("com.aopdemo.aspect.AopExpressions.forDaoPackageNoSettersOrGetters()")
 	public void beforeAddAccountAdvice(JoinPoint theJoinPoint) {
