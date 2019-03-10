@@ -22,7 +22,7 @@ public class AfterFinallyDemoApp {
 		
 		try{
 			//ADD A BOOLEAN TO SIMULATE EXCEPTIONS
-			boolean tripWire = true;
+			boolean tripWire = false;
 			theAccountDAO.findAccounts(tripWire);
 		}catch (Exception exc) {
 			System.out.println("\nMain program... Caught exception: "+exc);
