@@ -3,9 +3,11 @@ package com.aopdemo.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -18,6 +20,30 @@ import com.aopdemo.Account;
 @Component
 @Order(2)
 public class MyDemoLogginAspect {
+	
+	@Around("execution(* com.aopdemo.service.*.getFortune(..))")
+	public Object aroundGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
+		
+		//PRINT THE ADVISE
+		String method = theProceedingJoinPoint.getSignature().toShortString();
+		System.out.println("\n===> Executing @aroundGetFortune on method: "+method);
+		
+		//GET BEGIN TIMESTAMP
+		long begin = System.currentTimeMillis();
+		
+		//EXECUTE METHOD
+		Object result = theProceedingJoinPoint.proceed();
+		
+		//GET END TIMESTAMP
+		long end = System.currentTimeMillis();
+		
+		//COMPUTE DURATION AND DISPLAY
+		long duration = end - begin;
+		System.out.println("\\n===> Duration: "+duration/1000.0+" seconds");
+				
+		return result;
+	}
+	
 	
 	@After("execution(* com.aopdemo.dao.AccountDAO.findAccounts(..))")
 	public void afterFinallyFindAccountAdvicee(JoinPoint theJoinPoint) {
