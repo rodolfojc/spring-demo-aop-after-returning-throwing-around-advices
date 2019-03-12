@@ -45,7 +45,9 @@ public class MyDemoLogginAspect {
 			myLogger.warning(e.getMessage());
 						
 			//CUSTOMER MESSAGE
-			result = "Mayor accident";
+			
+			//RETHROW EXCEPTION
+			throw e;
 		}
 		
 		//GET END TIMESTAMP
