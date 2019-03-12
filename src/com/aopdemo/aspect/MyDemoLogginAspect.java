@@ -35,7 +35,18 @@ public class MyDemoLogginAspect {
 		long begin = System.currentTimeMillis();
 		
 		//EXECUTE METHOD
-		Object result = theProceedingJoinPoint.proceed();
+		Object result = null;
+		
+		try {
+			result = theProceedingJoinPoint.proceed();
+		} catch (Exception e) {
+			
+			//LOG THE EXCEPTION
+			myLogger.warning(e.getMessage());
+						
+			//CUSTOMER MESSAGE
+			result = "Mayor accident";
+		}
 		
 		//GET END TIMESTAMP
 		long end = System.currentTimeMillis();
